@@ -16,14 +16,16 @@
 
 2) Copy and replace clover files
 
+3) Goto Clover/ACPI/patched/ and replace it with DSDT_TEST/Final_DSDT/DSDT.aml
+
+(*Warning: only copy and place DSDT.aml do not copy any other files inside that folder)
+
 # After Installation
 
- Flash all the kext files using kext utility
+1)  Flash all the kext files using kext utility
   
-Trackpad(VoodooI2C):
-        To Enable Trackpad, Remove all the LPSS oriented Kext files inside '/System/Library/Extensions'
+2)  Trackpad(VoodooI2C):  To Enable Trackpad, Remove all the LPSS oriented Kext files inside '/System/Library/Extensions'
 
-Audio(AppleALC):
-        If you want External Mic to work, you have to route the External mic using this guide:  http://forum.osxlatitude.com/index.php?/topic/1946-complete-applehda-patching-guide/
+3)  Audio(AppleALC):       If you want External Mic to work, you have to route the External mic using this guide:  http://forum.osxlatitude.com/index.php?/topic/1946-complete-applehda-patching-guide/
    
    *Note: Wifi and External Mic Doesn't Work
