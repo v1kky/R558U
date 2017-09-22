@@ -16,7 +16,7 @@
 
 2) Copy and replace clover files
 
-3) Goto Clover/ACPI/patched/ and replace it with DSDT_TEST/Final_DSDT/DSDT.aml
+3) replace Clover/ACPI/patched/DSDT.aml with DSDT/Final_DSDT/DSDT.aml
 
 (*Warning: only copy and place DSDT.aml do not copy any other files inside that folder)
 
@@ -28,4 +28,4 @@
 
 3)  Audio(AppleALC):       If you want External Mic to work, you have to route the External mic using this guide:  http://forum.osxlatitude.com/index.php?/topic/1946-complete-applehda-patching-guide/
    
-   *Note: Wifi and External Mic Doesn't Work
+   *Note: Wifi and Internal Mic Doesn't Work
