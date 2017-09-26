@@ -5,13 +5,13 @@
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of DSDT.aml, Sun Sep 17 00:56:36 2017
+ * Disassembly of DSDT.aml, Sun Sep 24 10:51:08 2017
  *
  * Original Table Header:
  *     Signature        "DSDT"
  *     Length           0x00026152 (155986)
  *     Revision         0x02
- *     Checksum         0xC0
+ *     Checksum         0xF0
  *     OEM ID           "_ASUS_"
  *     OEM Table ID     "Notebook"
  *     OEM Revision     0x01072009 (17244169)
@@ -58,23 +58,23 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
     External (_PR_.HWPI, FieldUnitObj)
     External (_PR_.TRPD, FieldUnitObj)
     External (_PR_.TRPF, FieldUnitObj)
-    External (_SB_.PCI0.GFX0.ADVD, MethodObj)    // 0 Arguments
-    External (_SB_.PCI0.GFX0.AINT, MethodObj)    // 2 Arguments
-    External (_SB_.PCI0.GFX0.CBLV, FieldUnitObj)
-    External (_SB_.PCI0.GFX0.CLID, FieldUnitObj)
-    External (_SB_.PCI0.GFX0.DWBL, MethodObj)    // 0 Arguments
-    External (_SB_.PCI0.GFX0.GCBL, MethodObj)    // 1 Arguments
-    External (_SB_.PCI0.GFX0.GCDS, MethodObj)    // 0 Arguments
-    External (_SB_.PCI0.GFX0.GLID, MethodObj)    // 1 Arguments
-    External (_SB_.PCI0.GFX0.GSCI, MethodObj)    // 0 Arguments
-    External (_SB_.PCI0.GFX0.GSSE, FieldUnitObj)
-    External (_SB_.PCI0.GFX0.LCDD._DCS, MethodObj)    // 0 Arguments
-    External (_SB_.PCI0.GFX0.NATK, MethodObj)    // 0 Arguments
-    External (_SB_.PCI0.GFX0.OPTS, MethodObj)    // 1 Arguments
-    External (_SB_.PCI0.GFX0.OWAK, MethodObj)    // 1 Arguments
-    External (_SB_.PCI0.GFX0.PRST, MethodObj)    // 0 Arguments
-    External (_SB_.PCI0.GFX0.SWHD, MethodObj)    // 1 Arguments
-    External (_SB_.PCI0.GFX0.UPBL, MethodObj)    // 0 Arguments
+    External (_SB_.PCI0.IGPU.ADVD, MethodObj)    // 0 Arguments
+    External (_SB_.PCI0.IGPU.AINT, MethodObj)    // 2 Arguments
+    External (_SB_.PCI0.IGPU.CBLV, FieldUnitObj)
+    External (_SB_.PCI0.IGPU.CLID, FieldUnitObj)
+    External (_SB_.PCI0.IGPU.DWBL, MethodObj)    // 0 Arguments
+    External (_SB_.PCI0.IGPU.GCBL, MethodObj)    // 1 Arguments
+    External (_SB_.PCI0.IGPU.GCDS, MethodObj)    // 0 Arguments
+    External (_SB_.PCI0.IGPU.GLID, MethodObj)    // 1 Arguments
+    External (_SB_.PCI0.IGPU.GSCI, MethodObj)    // 0 Arguments
+    External (_SB_.PCI0.IGPU.GSSE, FieldUnitObj)
+    External (_SB_.PCI0.IGPU.LCDD._DCS, MethodObj)    // 0 Arguments
+    External (_SB_.PCI0.IGPU.NATK, MethodObj)    // 0 Arguments
+    External (_SB_.PCI0.IGPU.OPTS, MethodObj)    // 1 Arguments
+    External (_SB_.PCI0.IGPU.OWAK, MethodObj)    // 1 Arguments
+    External (_SB_.PCI0.IGPU.PRST, MethodObj)    // 0 Arguments
+    External (_SB_.PCI0.IGPU.SWHD, MethodObj)    // 1 Arguments
+    External (_SB_.PCI0.IGPU.UPBL, MethodObj)    // 0 Arguments
     External (_SB_.PCI0.PAUD.PUAM, MethodObj)    // Warning: Unknown method, guessing 0 arguments
     External (_SB_.PCI0.RP01.PEGP.ADVD, IntObj)    // Warning: Unknown object
     External (_SB_.PCI0.RP01.PEGP.DWBL, MethodObj)    // 0 Arguments
@@ -178,7 +178,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
     Name (TOPM, 0x00000000)
     Name (ROMS, 0xFFE00000)
     Name (VGAF, One)
-    OperationRegion (GNVS, SystemMemory, 0x77125000, 0x0600)
+    OperationRegion (GNVS, SystemMemory, 0x77124000, 0x0600)
     Field (GNVS, AnyAcc, Lock, Preserve)
     {
         OSYS,   16, 
@@ -3902,7 +3902,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                 Subtract (Add (M1MN, M1LN), One, M1MX)
                 If (LEqual (M64L, Zero))
                 {
-                    CreateQWordField (BUF0, \_SB.PCI0._Y0F._LEN, MSLN)  // _LEN: Length
+                    CreateDWordField (BUF0, \_SB.PCI0._Y0F._LEN, MSLN)  // _LEN: Length
                     Store (Zero, MSLN)
                 }
                 Else
@@ -3973,7 +3973,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
 
             Scope (\_SB.PCI0)
             {
-                Device (GFX0)
+                Device (IGPU)
                 {
                     Name (_ADR, 0x00020000)  // _ADR: Address
                 }
@@ -3985,7 +3985,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                         If (PCIC (Arg0))
                         {
                             Return (PCID (Arg0, Arg1, Arg2, Arg3))
-                        } Return (Zero)
+                        }
                     }
 
                     Name (_ADR, 0x00040000)  // _ADR: Address
@@ -5492,7 +5492,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     })
                 }
 
-             
+               
                 Method (HPME, 0, Serialized)
                 {
                     If (LAnd (LNotEqual (VDID, 0xFFFFFFFF), LEqual (PMSX, One)))
@@ -8950,7 +8950,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     Offset (0x08)
                 }
 
-                OperationRegion (CPSB, SystemMemory, 0x75CBAF18, 0x10)
+                OperationRegion (CPSB, SystemMemory, 0x75CB9F18, 0x10)
                 Field (CPSB, AnyAcc, NoLock, Preserve)
                 {
                     RTCX,   1, 
@@ -9009,8 +9009,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
     })
     Method (_PTS, 1, NotSerialized)  // _PTS: Prepare To Sleep
     {
-        If (LNotEqual(Arg0,5)) {
-If (Arg0)
+        If (Arg0)
         {
             \_SB.TPM.TPTS (Arg0)
             \_SB.PCI0.LPCB.SPTS (Arg0)
@@ -9018,14 +9017,11 @@ If (Arg0)
             RPTS (Arg0)
             OEMS (Arg0)
         }
-}
-
     }
 
     Method (_WAK, 1, NotSerialized)  // _WAK: Wake
     {
         If (LOr(LLess(Arg0,1),LGreater(Arg0,5))) { Store(3,Arg0) }
-If (LOr(LLess(Arg0,1),LGreater(Arg0,5))) { Store(3,Arg0) }
 RWAK (Arg0)
         \_SB.PCI0.NWAK (Arg0)
         \_SB.PCI0.LPCB.SWAK (Arg0)
@@ -9454,7 +9450,7 @@ RWAK (Arg0)
         }
     }
 
-    Name (PNVB, 0x77126C98)
+    Name (PNVB, 0x77125C98)
     Name (PNVL, 0x0204)
     If (LEqual (ECR1, One))
     {
@@ -12046,8 +12042,6 @@ RWAK (Arg0)
                     }
                 }
             }
-            
-            
             Method(_PRW) { Return(Package() { 0x0D, 0 }) }
             Method (_DSM, 4, NotSerialized)
             {
@@ -12288,7 +12282,6 @@ RWAK (Arg0)
                 }
             }
             Method(_PRW) { Return(Package() { 0x0D, 0 }) }
-            
         }
     }
 
@@ -12399,8 +12392,6 @@ RWAK (Arg0)
                     //"MaximumBootBeepVolume", 77,
                 })
             }
-            
-            Method(_PRW) { Return(Package() { 0x0D, 0 }) }
             Device (BUS0)
             {
                 Name (_CID, "smbus")
@@ -12416,8 +12407,7 @@ RWAK (Arg0)
                     }
                 }
             }
-            
-            
+            Method(_PRW) { Return(Package() { 0x0D, 0 }) }
 
             
         }
@@ -12648,7 +12638,7 @@ RWAK (Arg0)
                     {
                         Store (0x10, PRBI)
                         Store (RDCA (NCRN, 0x10, Zero, Zero, 0x02), PRBD)
-                    }   
+                    }
 
                     EPD3 ()
                     RPD3 (NCRN)
@@ -13294,41 +13284,49 @@ RWAK (Arg0)
     {
         Device (I2C0)
         {
-                   
-             Name (_HID, "INT3442")  // _HID: Hardware ID
-        Method (_HRV, 0, NotSerialized)  // _HRV: Hardware Revision
-        {
-            Return (LHRV (SB10))
-        }
-        Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-        {
-            Return (LCRS (SMD0, SB00, SIR0))
-        }
-        
-        Method (_STA, 0, NotSerialized)  // _STA: Status
-        {
-            Return (LSTA (SMD0))
-        }
-        
-             Name (_ADR, 0x00150000)  // _ADR: Address
-        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-        {
-            If (PCIC (Arg0))
+            Name (_HID, "INT3442")  // _HID: Hardware ID
+            Method (_HRV, 0, NotSerialized)  // _HRV: Hardware Revision
             {
-                Return (PCID (Arg0, Arg1, Arg2, Arg3))
+                Return (LHRV (SB10))
             }
-            Return (Zero)
-        }
-                    
-          
+            Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
+            {
+                Return (LCRS (SMD0, SB00, SIR0))
+            }
+            Method (_PSC, 0, NotSerialized)  // _PSC: Power State Current
+            {
+                GETD (SB10)
+            }
+            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+            {
+                LPD0 (SB10)
+            }
+            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+            {
+                LPD3 (SB10)
+            }
+            Method (_STA, 0, NotSerialized)  // _STA: Status
+            {
+                Return (LSTA (SMD0))
+            }
+            Name (_ADR, 0x00150000)  // _ADR: Address
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            {
+                If (PCIC (Arg0))
+                {
+                    Return (PCID (Arg0, Arg1, Arg2, Arg3))
+                }
+                Return (Zero)
+            }
         }
     }
 
-   Scope (_SB.PCI0)
+    
+
+    Scope (_SB.PCI0)
     {
         Device (I2C1)
         {
-            
             Name (_HID, "INT3443")  // _HID: Hardware ID
             Method (_HRV, 0, NotSerialized)  // _HRV: Hardware Revision
             {
@@ -13366,9 +13364,8 @@ RWAK (Arg0)
         }
     }
 
-           
 
-   Scope (_SB.PCI0)
+    Scope (_SB.PCI0)
     {
         Device (I2C2)
         {
@@ -13488,10 +13485,7 @@ RWAK (Arg0)
                 Return (Zero)
             }
         }
-    } 
-
-   
-        
+    }
 
     Scope (_SB.PCI0)
     {
@@ -15791,8 +15785,7 @@ RWAK (Arg0)
         If (CondRefOf (MDBG))
         {
             Return (MDBG)
-            
-        }
+         }
 
         Return (Zero)
     }
@@ -17551,9 +17544,9 @@ RWAK (Arg0)
 
         Method (_L66, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
         {
-            If (LAnd (\_SB.PCI0.GFX0.GSSE, LNot (GSMI)))
+            If (LAnd (\_SB.PCI0.IGPU.GSSE, LNot (GSMI)))
             {
-                \_SB.PCI0.GFX0.GSCI ()
+                \_SB.PCI0.IGPU.GSCI ()
             }
         }
 
@@ -24653,7 +24646,7 @@ RWAK (Arg0)
         }
     }
 
-    Scope (_SB.PCI0.GFX0)
+    Scope (_SB.PCI0.IGPU)
     {
         Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
         {
@@ -26226,7 +26219,7 @@ RWAK (Arg0)
 
                 Package (0x03)
                 {
-                    "\\_SB.PCI0.GFX0", 
+                    "\\_SB.PCI0.IGPU", 
                     One, 
                     Package (0x02)
                     {
@@ -29984,10 +29977,6 @@ RWAK (Arg0)
                     Store (Arg1, ECFL)
                 }
             }
-            
-            
-            
-            
             Method (RE1B, 1, NotSerialized)
             {
                 OperationRegion(ERAM, EmbeddedControl, Arg0, 1)
@@ -30409,9 +30398,9 @@ RWAK (Arg0)
         Name (ONAM, "ASUSTeK")
         Method (ADVG, 0, NotSerialized)
         {
-            If (\_SB.PCI0.GFX0.PRST ())
+            If (\_SB.PCI0.IGPU.PRST ())
             {
-                Return (\_SB.PCI0.GFX0.ADVD ())
+                Return (\_SB.PCI0.IGPU.ADVD ())
             }
 
             If (\_SB.PCI0.RP01.PEGP.PRST ())
@@ -30424,9 +30413,9 @@ RWAK (Arg0)
 
         Method (GCDM, 0, NotSerialized)
         {
-            If (\_SB.PCI0.GFX0.PRST ())
+            If (\_SB.PCI0.IGPU.PRST ())
             {
-                Return (\_SB.PCI0.GFX0.GCDS ())
+                Return (\_SB.PCI0.IGPU.GCDS ())
             }
 
             If (\_SB.PCI0.RP01.PEGP.PRST ())
@@ -30439,9 +30428,9 @@ RWAK (Arg0)
 
         Method (SWHG, 1, Serialized)
         {
-            If (\_SB.PCI0.GFX0.PRST ())
+            If (\_SB.PCI0.IGPU.PRST ())
             {
-                \_SB.PCI0.GFX0.SWHD (Arg0)
+                \_SB.PCI0.IGPU.SWHD (Arg0)
                 Return (One)
             }
 
@@ -30456,9 +30445,9 @@ RWAK (Arg0)
 
         Method (NATK, 0, NotSerialized)
         {
-            If (\_SB.PCI0.GFX0.PRST ())
+            If (\_SB.PCI0.IGPU.PRST ())
             {
-                Return (\_SB.PCI0.GFX0.NATK ())
+                Return (\_SB.PCI0.IGPU.NATK ())
             }
 
             If (\_SB.PCI0.RP01.PEGP.PRST ())
@@ -32920,7 +32909,7 @@ Else
                 Store (One, ECUP)
             }
 
-            \_SB.PCI0.GFX0.OPTS (Arg0)
+            \_SB.PCI0.IGPU.OPTS (Arg0)
             If (LEqual (Arg0, 0x03))
             {
                 If (LLessEqual (MSOS (), OSME))
@@ -32965,7 +32954,7 @@ Else
         Method (OEMW, 1, NotSerialized)
         {
             \_SB.ATKD.GENW (Arg0)
-            \_SB.PCI0.GFX0.OWAK (Arg0)
+            \_SB.PCI0.IGPU.OWAK (Arg0)
             Store (Zero, \_SB.SLPT)
             \_SB.PCI0.LPCB.EC0.EC0W (Arg0)
             If (LEqual (Arg0, 0x04))
@@ -35995,7 +35984,7 @@ Else
                         ShiftLeft (Local4, 0x04, Local4)
                         Store (LBTN, Local3)
                         Store (Add (Local4, Local3), Local3)
-                        ^^^GFX0.AINT (One, Divide (Multiply (DerefOf (Index (PWAC, Local3)), 0x64), 0xFF, ))
+                        ^^^IGPU.AINT (One, Divide (Multiply (DerefOf (Index (PWAC, Local3)), 0x64), 0xFF, ))
                     }
                 }
                 Else
@@ -37574,9 +37563,9 @@ Else
         Name (ASBN, Zero)
         Method (SBRN, 0, Serialized)
         {
-            If (^^^GFX0.PRST ())
+            If (^^^IGPU.PRST ())
             {
-                Store (^^^GFX0.GCBL (^^^GFX0.CBLV), Local0)
+                Store (^^^IGPU.GCBL (^^^IGPU.CBLV), Local0)
                 Subtract (0x0A, Local0, Local1)
                 If (LNotEqual (Local1, LBTN))
                 {
@@ -37595,14 +37584,14 @@ Else
             If (LGreaterEqual (MSOS (), OSVT))
             {
                 Store (LBTN, Local0)
-                If (^^^GFX0.PRST ())
+                If (^^^IGPU.PRST ())
                 {
-                    If (LNotEqual (^^^GFX0.LCDD._DCS (), 0x1F))
+                    If (LNotEqual (^^^IGPU.LCDD._DCS (), 0x1F))
                     {
                         Return (Zero)
                     }
 
-                    ^^^GFX0.DWBL ()
+                    ^^^IGPU.DWBL ()
                     Store (One, ASBN)
                 }
 
@@ -37673,14 +37662,14 @@ Else
             If (LGreaterEqual (MSOS (), OSVT))
             {
                 Store (LBTN, Local0)
-                If (^^^GFX0.PRST ())
+                If (^^^IGPU.PRST ())
                 {
-                    If (LNotEqual (^^^GFX0.LCDD._DCS (), 0x1F))
+                    If (LNotEqual (^^^IGPU.LCDD._DCS (), 0x1F))
                     {
                         Return (Zero)
                     }
 
-                    ^^^GFX0.UPBL ()
+                    ^^^IGPU.UPBL ()
                     Store (One, ASBN)
                 }
 
@@ -38546,7 +38535,7 @@ Else
 
                 If (And (VGAF, One))
                 {
-                    Store (One, ^^PCI0.GFX0.CLID)
+                    Store (One, ^^PCI0.IGPU.CLID)
                 }
 
                 Return (Local0)
@@ -38567,9 +38556,9 @@ Else
             {
                 Store (GLID (), Local0)
                 Store (Local0, LIDS)
-                If (CondRefOf (\_SB.PCI0.GFX0.GLID))
+                If (CondRefOf (\_SB.PCI0.IGPU.GLID))
                 {
-                    ^^^GFX0.GLID (LIDS)
+                    ^^^IGPU.GLID (LIDS)
                 }
             }
         }
@@ -39833,11 +39822,6 @@ Else
                 Return (GPRW (0x69, 0x04))
             }
         }
-    }
-    
-    Scope (_SB)
-    {
-        
     }
     Method (B1B2, 2, NotSerialized) { Return(Or(Arg0, ShiftLeft(Arg1, 8))) }
     Scope (_SB)
