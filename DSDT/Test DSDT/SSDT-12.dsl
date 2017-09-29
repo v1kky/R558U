@@ -227,6 +227,9 @@ DefinitionBlock ("", "SSDT", 2, "SgRef", "SgPch", 0x00001000)
         Method (_INI, 0, NotSerialized)  // _INI: Initialize
         {
             Store (Zero, \_SB.PCI0.RP01.PEGP._ADR)
+            //added to turn off nvidia
+            External(\_SB.PCI0.RP01.PEGP._OFF, MethodObj)
+            _OFF()
         }
 
         Method (HGON, 0, Serialized)

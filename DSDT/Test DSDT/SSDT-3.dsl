@@ -49,8 +49,8 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
     External (_SB_.OCAD, FieldUnitObj)
     External (_SB_.OPAD, FieldUnitObj)
     External (_SB_.PCI0, DeviceObj)
-    External (_SB_.PCI0.GFX0, DeviceObj)
-    External (_SB_.PCI0.GFX0.SNXD, MethodObj)    // 1 Arguments
+    External (_SB_.PCI0.IGPU, DeviceObj)
+    External (_SB_.PCI0.IGPU.SNXD, MethodObj)    // 1 Arguments
     External (_SB_.PCI0.LPCB.EC0_.PWAC, BuffObj)
     External (_SB_.PCI0.LPCB.EC0_.STBR, MethodObj)    // 0 Arguments
     External (_SB_.SFUN, FieldUnitObj)
@@ -212,7 +212,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
     {
     }
 
-    Scope (\_SB.PCI0.GFX0)
+    Scope (\_SB.PCI0.IGPU)
     {
         OperationRegion (VSID, PCI_Config, Zero, 0x04)
         Field (VSID, ByteAcc, NoLock, Preserve)
@@ -1704,7 +1704,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
                 Subtract (0x0A, Local0, LBTN)
                 If (BRNC)
                 {
-                    \_SB.PCI0.GFX0.AINT (One, Arg0)
+                    \_SB.PCI0.IGPU.AINT (One, Arg0)
                 }
                 Else
                 {
@@ -2438,7 +2438,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
             Store (0x03, CSTS)
             If (LAnd (LEqual (CHPD, Zero), LEqual (Arg1, Zero)))
             {
-                Notify (\_SB.PCI0.GFX0, Arg1)
+                Notify (\_SB.PCI0.IGPU, Arg1)
             }
 
             If (CondRefOf (HNOT))
@@ -2447,7 +2447,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
             }
             Else
             {
-                Notify (\_SB.PCI0.GFX0, 0x80)
+                Notify (\_SB.PCI0.IGPU, 0x80)
             }
 
             Return (Zero)
@@ -2639,7 +2639,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
                     Store (One, GSES)
                 }
 
-                Store (One, \_SB.PCI0.GFX0.CLID)
+                Store (One, \_SB.PCI0.IGPU.CLID)
             }
         }
 
@@ -3668,12 +3668,12 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
                 }
 
                 ISMI (0x94)
-                Notify (\_SB.PCI0.GFX0, 0x81)
+                Notify (\_SB.PCI0.IGPU, 0x81)
             }
             Else
             {
-                Store (One, \_SB.PCI0.GFX0.CEVT)
-                Store (0x03, \_SB.PCI0.GFX0.CSTS)
+                Store (One, \_SB.PCI0.IGPU.CEVT)
+                Store (0x03, \_SB.PCI0.IGPU.CSTS)
                 If (LNotEqual (\_SB.OCAD, \_SB.OPAD))
                 {
                     Store (\_SB.OCAD, \_SB.OPAD)
@@ -3683,7 +3683,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
                     }
                     Else
                     {
-                        Notify (\_SB.PCI0.GFX0, Zero)
+                        Notify (\_SB.PCI0.IGPU, Zero)
                     }
 
                     Sleep (0x03E8)
@@ -3691,7 +3691,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
 
                 Store (AF2D (Arg0), \_SB.NSTE)
                 WNDD (\_SB.NSTE)
-                Notify (\_SB.PCI0.GFX0, 0x80)
+                Notify (\_SB.PCI0.IGPU, 0x80)
             }
 
             Return (Zero)
@@ -3735,7 +3735,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
         }
     }
 
-    Scope (\_SB.PCI0.GFX0)
+    Scope (\_SB.PCI0.IGPU)
     {
         Device (SKC0)
         {

@@ -63,10 +63,10 @@ DefinitionBlock ("", "SSDT", 2, "DptfTa", "DptfTabl", 0x00001000)
     External (_SB_.PAGD._STA, MethodObj)    // 0 Arguments
     External (_SB_.PCI0, DeviceObj)
     External (_SB_.PCI0.B0D4, DeviceObj)
-    External (_SB_.PCI0.GFX0.LCDD._BCL, MethodObj)    // 0 Arguments
-    External (_SB_.PCI0.GFX0.LCDD._BCM, MethodObj)    // 1 Arguments
-    External (_SB_.PCI0.GFX0.LCDD._BQC, MethodObj)    // 0 Arguments
-    External (_SB_.PCI0.GFX0.LCDD._DCS, MethodObj)    // 0 Arguments
+    External (_SB_.PCI0.IGPU.LCDD._BCL, MethodObj)    // 0 Arguments
+    External (_SB_.PCI0.IGPU.LCDD._BCM, MethodObj)    // 1 Arguments
+    External (_SB_.PCI0.IGPU.LCDD._BQC, MethodObj)    // 0 Arguments
+    External (_SB_.PCI0.IGPU.LCDD._DCS, MethodObj)    // 0 Arguments
     External (_SB_.PCI0.LPCB.EC0_, DeviceObj)
     External (_SB_.PCI0.LPCB.EC0_.RP2E, MethodObj)    // 1 Arguments
     External (_SB_.PCI0.LPCB.EC0_.WP2E, MethodObj)    // 2 Arguments
@@ -2527,9 +2527,9 @@ DefinitionBlock ("", "SSDT", 2, "DptfTa", "DptfTabl", 0x00001000)
 
             Method (_BCL, 0, NotSerialized)  // _BCL: Brightness Control Levels
             {
-                If (CondRefOf (\_SB.PCI0.GFX0.LCDD._BCL))
+                If (CondRefOf (\_SB.PCI0.IGPU.LCDD._BCL))
                 {
-                    Return (\_SB.PCI0.GFX0.LCDD._BCL ())
+                    Return (\_SB.PCI0.IGPU.LCDD._BCL ())
                 }
                 Else
                 {
@@ -2542,17 +2542,17 @@ DefinitionBlock ("", "SSDT", 2, "DptfTa", "DptfTabl", 0x00001000)
 
             Method (_BCM, 1, NotSerialized)  // _BCM: Brightness Control Method
             {
-                If (CondRefOf (\_SB.PCI0.GFX0.LCDD._BCM))
+                If (CondRefOf (\_SB.PCI0.IGPU.LCDD._BCM))
                 {
-                    \_SB.PCI0.GFX0.LCDD._BCM (Arg0)
+                    \_SB.PCI0.IGPU.LCDD._BCM (Arg0)
                 }
             }
 
             Method (_BQC, 0, NotSerialized)  // _BQC: Brightness Query Current
             {
-                If (CondRefOf (\_SB.PCI0.GFX0.LCDD._BQC))
+                If (CondRefOf (\_SB.PCI0.IGPU.LCDD._BQC))
                 {
-                    Return (\_SB.PCI0.GFX0.LCDD._BQC ())
+                    Return (\_SB.PCI0.IGPU.LCDD._BQC ())
                 }
                 Else
                 {
@@ -2562,9 +2562,9 @@ DefinitionBlock ("", "SSDT", 2, "DptfTa", "DptfTabl", 0x00001000)
 
             Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
             {
-                If (CondRefOf (\_SB.PCI0.GFX0.LCDD._DCS))
+                If (CondRefOf (\_SB.PCI0.IGPU.LCDD._DCS))
                 {
-                    Return (\_SB.PCI0.GFX0.LCDD._DCS ())
+                    Return (\_SB.PCI0.IGPU.LCDD._DCS ())
                 }
                 Else
                 {
