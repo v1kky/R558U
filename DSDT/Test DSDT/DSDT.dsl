@@ -8892,8 +8892,8 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
     Method (_PTS, 1, NotSerialized)  // _PTS: Prepare To Sleep
     {
         If (LNotEqual(Arg0,5)) {
-External(\_SB.PCI0.RP01.PEGP._ON, MethodObj)
-If (CondRefOf(\_SB.PCI0.RP01.PEGP._ON)) { \_SB.PCI0.RP01.PEGP._ON() }
+External(\_SB.PCI0.IGPU._ON, MethodObj)
+If (CondRefOf(\_SB.PCI0.IGPU._ON)) { \_SB.PCI0.IGPU._ON() }
 If (Arg0)
         {
             \_SB.TPM.TPTS (Arg0)
@@ -8914,8 +8914,8 @@ RWAK (Arg0)
         \_SB.PCI0.NWAK (Arg0)
         \_SB.PCI0.LPCB.SWAK (Arg0)
         OEMW (Arg0)
-        External(\_SB.PCI0.RP01.PEGP._OFF, MethodObj)
-If (CondRefOf(\_SB.PCI0.RP01.PEGP._OFF)) { \_SB.PCI0.RP01.PEGP._OFF() }
+        External(\_SB.PCI0.IGPU._OFF, MethodObj)
+If (CondRefOf(\_SB.PCI0.IGPU._OFF)) { \_SB.PCI0.IGPU._OFF() }
 Return (WAKP)
     }
 
