@@ -98,11 +98,11 @@
 			<key>DefaultMultitouchProperties</key>
 			<dict>
 				<key>ActuationSupported</key>
-				<true/>
+				<false/>
 				<key>ExtractAndPostDeviceButtonState</key>
 				<true/>
 				<key>ForceSupported</key>
-				<true/>
+				<false/>
 				<key>HIDServiceSupport</key>
 				<true/>
 				<key>IOCFPlugInTypes</key>
