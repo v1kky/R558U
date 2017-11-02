@@ -18,7 +18,7 @@
 
 3) replace Clover/ACPI/patched/DSDT.aml with DSDT/Final_DSDT/DSDT.aml
 
-(*Warning: only copy and place DSDT.aml do not copy any other files inside that folder)
+(*Warning: do not copy any *.asl files inside that folder)
 
 # After Installation
 
