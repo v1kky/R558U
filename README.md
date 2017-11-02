@@ -28,4 +28,6 @@
 
 3)  Audio(AppleALC):       If you want External Mic to work, you have to route the External mic using this guide:  http://forum.osxlatitude.com/index.php?/topic/1946-complete-applehda-patching-guide/
    
-   *Note: Wifi and LineIn Mic Doesn't Work
+   *Not Working:
+             Wifi 
+             LineIn Mic
