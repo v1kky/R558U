@@ -1,4 +1,4 @@
-# R558U Clover and  Kext Files For Hackintosh
+# R558U Clover, CustomPatched DSDT and  Kext Files For Hackintosh
 
 # Device Specification
   
@@ -32,3 +32,6 @@
              Wifi,
              Card reader and
              LineIn Mic
+             
+            
+High sierra Updated : Disable NVidia Optimus Detection permenantly in DSDT (so it save some power and boot without a problem
