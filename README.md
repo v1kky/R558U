@@ -1,4 +1,4 @@
-# R558U Clover and  Kext Files For Mac Installation
+# R558U Clover, CustomPatched DSDT and  Kext Files For Hackintosh
 
 # Device Specification
   
@@ -18,7 +18,7 @@
 
 3) replace Clover/ACPI/patched/DSDT.aml with DSDT/Final_DSDT/DSDT.aml
 
-(*Warning: only copy and place DSDT.aml do not copy any other files inside that folder)
+(*Warning: do not copy any *.asl files inside that folder)
 
 # After Installation
 
@@ -28,4 +28,10 @@
 
 3)  Audio(AppleALC):       If you want External Mic to work, you have to route the External mic using this guide:  http://forum.osxlatitude.com/index.php?/topic/1946-complete-applehda-patching-guide/
    
-   *Note: Wifi and LineIn Mic Doesn't Work
+   Not Working:
+             Wifi,
+             Card reader and
+             LineIn Mic
+             
+            
+High sierra Updated : Disable NVidia Optimus Detection permenantly in DSDT (so it save some power and boot without a problem
