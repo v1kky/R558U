@@ -5,13 +5,13 @@
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of DSDT.aml, Mon Jan 22 16:30:47 2018
+ * Disassembly of ./DSDT.aml, Sat Jan 20 13:16:24 2018
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x000268F5 (157941)
+ *     Length           0x0002650C (156940)
  *     Revision         0x02
- *     Checksum         0xBE
+ *     Checksum         0x01
  *     OEM ID           "_ASUS_"
  *     OEM Table ID     "Notebook"
  *     OEM Revision     0x01072009 (17244169)
@@ -20,13 +20,31 @@
  */
 DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
 {
+    /*
+     * iASL Warning: There were 30 external control methods found during
+     * disassembly, but only 29 were resolved (1 unresolved). Additional
+     * ACPI tables may be required to properly disassemble the code. This
+     * resulting disassembler output file may not compile because the
+     * disassembler did not know how many arguments to assign to the
+     * unresolved methods. Note: SSDTs can be dynamically loaded at
+     * runtime and may or may not be available via the host OS.
+     *
+     * In addition, the -fe option can be used to specify a file containing
+     * control method external declarations with the associated method
+     * argument counts. Each line of the file must be of the form:
+     *     External (<method pathname>, MethodObj, <argument count>)
+     * Invocation:
+     *     iasl -fe refs.txt -d dsdt.aml
+     *
+     * The following methods were unresolved and many not compile properly
+     * because the disassembler had to guess at the number of arguments
+     * required for each:
+     */
     External (_GPE.HLVT, MethodObj)    // 0 Arguments (from opcode)
     External (_PR_.BGIA, FieldUnitObj)    // (from opcode)
     External (_PR_.BGMA, FieldUnitObj)    // (from opcode)
     External (_PR_.BGMS, FieldUnitObj)    // (from opcode)
     External (_PR_.CPPC, FieldUnitObj)    // (from opcode)
-    External (_PR_.CPU0._PPC, MethodObj)    // 0 Arguments
-    External (_PR_.CPU0._PSS, MethodObj)    // 0 Arguments
     External (_PR_.CPU0.LPSS, PkgObj)    // (from opcode)
     External (_PR_.CPU0.TPSS, UnknownObj)    // (from opcode)
     External (_PR_.DSAE, FieldUnitObj)    // (from opcode)
@@ -71,6 +89,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
     External (_SB_.TPM_.PTS_, MethodObj)    // 1 Arguments (from opcode)
     External (AL6F, MethodObj)    // 0 Arguments (from opcode)
     External (GSMI, FieldUnitObj)    // (from opcode)
+    External (HLVT, MethodObj)    // Warning: Unknown method, guessing 0 arguments
     External (LIDS, FieldUnitObj)    // (from opcode)
     External (M32B, FieldUnitObj)    // (from opcode)
     External (M32L, FieldUnitObj)    // (from opcode)
@@ -3961,7 +3980,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
 
                 Device (B0D4)
                 {
-                    Method (XDSM, 4, Serialized)
+                    Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                     {
                         If (PCIC (Arg0))
                         {
@@ -4147,7 +4166,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
@@ -4385,7 +4404,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
@@ -4623,7 +4642,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
@@ -4861,7 +4880,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
@@ -5099,7 +5118,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
@@ -5337,7 +5356,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
@@ -5565,7 +5584,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
@@ -5803,7 +5822,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
@@ -6041,7 +6060,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
@@ -6279,7 +6298,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
@@ -6535,7 +6554,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
@@ -6810,7 +6829,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
@@ -7048,7 +7067,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
@@ -7286,7 +7305,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
@@ -7524,7 +7543,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
@@ -7762,7 +7781,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
@@ -8000,7 +8019,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
@@ -8238,7 +8257,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
@@ -8476,7 +8495,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
@@ -8714,7 +8733,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     Zero, 
                     Zero
                 })
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
@@ -8951,11 +8970,6 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                     SBBF,   8
                 }
             }
-
-            Device (IMEI)
-            {
-                Name (_ADR, 0x00160000)  // _ADR: Address
-            }
         }
     }
 
@@ -8993,9 +9007,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
     })
     Method (_PTS, 1, NotSerialized)  // _PTS: Prepare To Sleep
     {
-        External(\_SB.PCI0.RP01.PEGP._ON, MethodObj)
-If (CondRefOf(\_SB.PCI0.RP01.PEGP._ON)) { \_SB.PCI0.RP01.PEGP._ON() }
-If (Arg0)
+        If (Arg0)
         {
             \_SB.TPM.TPTS (Arg0)
             \_SB.PCI0.LPCB.SPTS (Arg0)
@@ -9016,9 +9028,7 @@ If (Arg0)
         \_SB.PCI0.NWAK (Arg0)
         \_SB.PCI0.LPCB.SWAK (Arg0)
         OEMW (Arg0)
-        External(\_SB.PCI0.RP01.PEGP._OFF, MethodObj)
-If (CondRefOf(\_SB.PCI0.RP01.PEGP._OFF)) { \_SB.PCI0.RP01.PEGP._OFF() }
-Return (WAKP)
+        Return (WAKP)
     }
 
     Scope (_PR)
@@ -10491,7 +10501,7 @@ Return (WAKP)
                     STSX,   32
                 }
 
-                //Store (STSX, Local3)
+                Store (STSX, Local3)
                 ShiftLeft (One, Local1, Local2)
                 Or (STSX, Local2, STSX)
             }
@@ -10834,7 +10844,7 @@ Return (WAKP)
 
     Scope (_SB.PCI0.LPCB)
     {
-        Method (XDSM, 4, Serialized)
+        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
         {
             If (PCIC (Arg0))
             {
@@ -10879,7 +10889,7 @@ Return (WAKP)
         Device (PPMC)
         {
             Name (_ADR, 0x001F0002)  // _ADR: Address
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -10905,7 +10915,7 @@ Return (WAKP)
         Device (SBUS)
         {
             Name (_ADR, 0x001F0004)  // _ADR: Address
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -11666,7 +11676,7 @@ Return (WAKP)
                 DAT1,   32
             }
 
-            //Store (DAT1, Local1)
+            Store (DAT1, Local1)
         }
 
         Method (PCRO, 3, Serialized)
@@ -11900,24 +11910,6 @@ Return (WAKP)
             }
 
             Name (XFLT, Zero)
-            Method (XDSM, 4, Serialized)
-            {
-                If (PCIC (Arg0))
-                {
-                    Return (PCID (Arg0, Arg1, Arg2, Arg3))
-                }
-
-                If (LEqual (Arg0, ToUUID ("ac340cb7-e901-45bf-b7e6-2b34ec931e23")))
-                {
-                    If (LEqual (Arg1, 0x03))
-                    {
-                        Store (Arg1, XFLT)
-                    }
-                }
-
-                Return (Zero)
-            }
-
             Method (_S3D, 0, NotSerialized)  // _S3D: S3 Device State
             {
                 Return (0x03)
@@ -12010,7 +12002,7 @@ Return (WAKP)
                 Store (MEMB, Local2)
                 Store (PDBM, Local1)
                 And (PDBM, 0xFFFFFFFFFFFFFFF9, PDBM)
-                //Store (D0D3, Local3)
+                Store (D0D3, Local3)
                 Store (Zero, D0D3)
                 Store (XWMB, MEMB)
                 Or (Local1, 0x02, PDBM)
@@ -12167,7 +12159,7 @@ Return (WAKP)
             {
                 Return (Package (0x02)
                 {
-                    0x6D, 
+                    0x0D, 
                     Zero
                 })
             }
@@ -12243,7 +12235,7 @@ Return (WAKP)
                 Return (And (XDCB, 0xFFFFFFFFFFFFFF00))
             }
 
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                 If (PCIC (Arg0))
@@ -12435,7 +12427,7 @@ Return (WAKP)
             {
                 Return (Package (0x02)
                 {
-                    0x6D, 
+                    0x0D, 
                     Zero
                 })
             }
@@ -12537,67 +12529,6 @@ Return (WAKP)
                 }
             }
 
-            Method (XDSM, 4, Serialized)
-            {
-                Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
-                ADBG ("HDAS XDSM")
-                If (PCIC (Arg0))
-                {
-                    Return (PCID (Arg0, Arg1, Arg2, Arg3))
-                }
-
-                If (LEqual (Arg0, ToUUID ("a69f886e-6ceb-4594-a41f-7b5dce24c553")))
-                {
-                    While (One)
-                    {
-                        Store (Arg2, _T_0)
-                        If (LEqual (_T_0, Zero))
-                        {
-                            Return (Buffer (One)
-                            {
-                                 0x0F                                           
-                            })
-                        }
-                        ElseIf (LEqual (_T_0, One))
-                        {
-                            ADBG ("XDSM Fun 1 NHLT")
-                            Return (NBUF)
-                        }
-                        ElseIf (LEqual (_T_0, 0x02))
-                        {
-                            ADBG ("XDSM Fun 2 FMSK")
-                            Return (ADFM)
-                        }
-                        ElseIf (LEqual (_T_0, 0x03))
-                        {
-                            ADBG ("XDSM Fun 3 PPMS")
-                            Return (Zero)
-                        }
-                        Else
-                        {
-                            ADBG ("XDSM Fun NOK")
-                            Return (Buffer (One)
-                            {
-                                 0x00                                           
-                            })
-                        }
-
-                        Break
-                    }
-                }
-
-                ADBG ("XDSM UUID NOK")
-            }
-
-            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-            {
-                Return (Package (0x02)
-                {
-                    0x6D, 
-                    Zero
-                })
-            }
-
             Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg2, Zero))
@@ -12626,12 +12557,48 @@ Return (WAKP)
                     Buffer (Zero) {}
                 })
             }
+
+            Device (BUS0)
+            {
+                Name (_CID, "smbus")  // _CID: Compatible ID
+                Name (_ADR, Zero)  // _ADR: Address
+                Device (DVL0)
+                {
+                    Name (_ADR, 0x57)  // _ADR: Address
+                    Name (_CID, "diagsvault")  // _CID: Compatible ID
+                    Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+                    {
+                        If (LEqual (Arg2, Zero))
+                        {
+                            Return (Buffer (One)
+                            {
+                                 0x03                                           
+                            })
+                        }
+
+                        Return (Package (0x02)
+                        {
+                            "address", 
+                            0x57
+                        })
+                    }
+                }
+            }
+
+            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
+            {
+                Return (Package (0x02)
+                {
+                    0x0D, 
+                    Zero
+                })
+            }
         }
 
         Device (SAT0)
         {
             Name (_ADR, 0x00170000)  // _ADR: Address
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -13475,7 +13442,9 @@ Return (WAKP)
 
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
+                
                 Return (0x0F)
+
             }
         }
     }
@@ -13511,7 +13480,7 @@ Return (WAKP)
         Scope (_SB.PCI0.I2C0)
         {
             Name (_ADR, 0x00150000)  // _ADR: Address
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -13554,7 +13523,7 @@ Return (WAKP)
         Scope (_SB.PCI0.I2C1)
         {
             Name (_ADR, 0x00150001)  // _ADR: Address
-            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -13597,7 +13566,7 @@ Return (WAKP)
         Scope (_SB.PCI0.I2C2)
         {
             Name (_ADR, 0x00150002)  // _ADR: Address
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -13640,7 +13609,7 @@ Return (WAKP)
         Scope (_SB.PCI0.I2C3)
         {
             Name (_ADR, 0x00150003)  // _ADR: Address
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -13683,7 +13652,7 @@ Return (WAKP)
         Scope (_SB.PCI0.I2C4)
         {
             Name (_ADR, 0x00190002)  // _ADR: Address
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -13726,7 +13695,7 @@ Return (WAKP)
         Scope (_SB.PCI0.I2C5)
         {
             Name (_ADR, 0x00190001)  // _ADR: Address
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -13786,7 +13755,7 @@ Return (WAKP)
         Scope (_SB.PCI0.SPI0)
         {
             Name (_ADR, 0x001E0002)  // _ADR: Address
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -13846,7 +13815,7 @@ Return (WAKP)
         Scope (_SB.PCI0.SPI1)
         {
             Name (_ADR, 0x001E0003)  // _ADR: Address
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -13905,7 +13874,7 @@ Return (WAKP)
         Scope (_SB.PCI0.UA00)
         {
             Name (_ADR, 0x001E0000)  // _ADR: Address
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -13985,7 +13954,7 @@ Return (WAKP)
         Scope (_SB.PCI0.UA01)
         {
             Name (_ADR, 0x001E0001)  // _ADR: Address
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -14065,7 +14034,7 @@ Return (WAKP)
         Scope (_SB.PCI0.UA02)
         {
             Name (_ADR, 0x00190000)  // _ADR: Address
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -14244,7 +14213,7 @@ Return (WAKP)
             Name (_HID, "XXXX0000")  // _HID: Hardware ID
             Name (_CID, "PNP0C50")  // _CID: Compatible ID
             Name (_S0W, 0x03)  // _S0W: S0 Device Wake State
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, HIDG))
                 {
@@ -14362,193 +14331,6 @@ Return (WAKP)
         }
     }
 
-    Scope (_SB.PCI0.I2C1)
-    {
-        Device (TPL1)
-        {
-            Name (HID2, Zero)
-            Name (SBFB, ResourceTemplate ()
-            {
-                I2cSerialBusV2 (0x004C, ControllerInitiated, 0x00061A80,
-                    AddressingMode7Bit, "\\_SB.PCI0.I2C1",
-                    0x00, ResourceConsumer, _Y28, Exclusive,
-                    )
-            })
-            Name (SBFG, ResourceTemplate ()
-            {
-                GpioInt (Level, ActiveLow, Exclusive, PullDefault, 0x0000,
-                    "\\_SB.PCI0.GPI0", 0x00, ResourceConsumer, ,
-                    )
-                    {   // Pin list
-                        0x0000
-                    }
-            })
-            Name (SBFI, ResourceTemplate ()
-            {
-                Interrupt (ResourceConsumer, Level, ActiveLow, Exclusive, ,, _Y29)
-                {
-                    0x00000000,
-                }
-            })
-            CreateWordField (SBFB, \_SB.PCI0.I2C1.TPL1._Y28._ADR, BADR)  // _ADR: Address
-            CreateDWordField (SBFB, \_SB.PCI0.I2C1.TPL1._Y28._SPE, SPED)  // _SPE: Speed
-            CreateDWordField (SBFI, \_SB.PCI0.I2C1.TPL1._Y29._INT, INT2)  // _INT: Interrupts
-            CreateWordField (SBFG, 0x17, INT1)
-            Method (_INI, 0, NotSerialized)  // _INI: Initialize
-            {
-                If (LLess (OSYS, 0x07DC))
-                {
-                    SRXO (GPLI, One)
-                }
-
-                Store (GNUM (GPLI), INT1)
-                Store (INUM (GPLI), INT2)
-                If (LEqual (SDM1, Zero))
-                {
-                    SHPO (GPLI, One)
-                }
-
-                If (LEqual (SDS1, One))
-                {
-                    Store ("ATML3432", _HID)
-                    Store (Zero, HID2)
-                    Store (0x4C, BADR)
-                    Store (0x00061A80, SPED)
-                    Return (Zero)
-                }
-
-                If (LEqual (SDS1, 0x02))
-                {
-                    Store ("ATML2952", _HID)
-                    Store (Zero, HID2)
-                    Store (0x4A, BADR)
-                    Store (0x00061A80, SPED)
-                    Return (Zero)
-                }
-
-                If (LEqual (SDS1, 0x03))
-                {
-                    Store ("ELAN2097", _HID)
-                    Store (One, HID2)
-                    Store (0x10, BADR)
-                    Store (0x00061A80, SPED)
-                    Return (Zero)
-                }
-
-                If (LEqual (SDS1, 0x04))
-                {
-                    Store ("NTRG0001", _HID)
-                    Store (One, HID2)
-                    Store (0x07, BADR)
-                    Store (0x00061A80, SPED)
-                    Return (Zero)
-                }
-
-                If (LEqual (SDS1, 0x05))
-                {
-                    Store ("NTRG0002", _HID)
-                    Store (One, HID2)
-                    Store (0x64, BADR)
-                    Store (0x00061A80, SPED)
-                    Return (Zero)
-                }
-
-                If (LEqual (SDS1, 0x06))
-                {
-                    Store ("CUST0000", _HID)
-                    Store (TPLH, HID2)
-                    Store (TPLB, BADR)
-                    If (LEqual (TPLS, Zero))
-                    {
-                        Store (0x000186A0, SPED)
-                    }
-
-                    If (LEqual (TPLS, One))
-                    {
-                        Store (0x00061A80, SPED)
-                    }
-
-                    If (LEqual (TPLS, 0x02))
-                    {
-                        Store (0x000F4240, SPED)
-                    }
-
-                    Return (Zero)
-                }
-            }
-
-            Name (_HID, "XXXX0000")  // _HID: Hardware ID
-            Name (_CID, "PNP0C50")  // _CID: Compatible ID
-            Name (_S0W, 0x04)  // _S0W: S0 Device Wake State
-            Method (XDSM, 4, Serialized)
-            {
-                If (LEqual (Arg0, HIDG))
-                {
-                    Return (HIDD (Arg0, Arg1, Arg2, Arg3, HID2))
-                }
-
-                If (LEqual (Arg0, TP7G))
-                {
-                    Return (TP7D (Arg0, Arg1, Arg2, Arg3, SBFB, SBFG))
-                }
-
-                Return (Buffer (One)
-                {
-                     0x00                                           
-                })
-            }
-
-            Method (_STA, 0, NotSerialized)  // _STA: Status
-            {
-                Return (Zero)
-            }
-
-            Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-            {
-                If (LLess (OSYS, 0x07DC))
-                {
-                    Return (SBFI)
-                }
-
-                If (LEqual (SDM1, Zero))
-                {
-                    Return (ConcatenateResTemplate (SBFB, SBFG))
-                }
-
-                Return (ConcatenateResTemplate (SBFB, SBFI))
-            }
-        }
-
-        Device (IMP3)
-        {
-            Name (_ADR, Zero)  // _ADR: Address
-            Name (_HID, "IMPJ0003")  // _HID: Hardware ID
-            Name (_CID, "IMPJ0003")  // _CID: Compatible ID
-            Name (_UID, One)  // _UID: Unique ID
-            Method (_STA, 0, NotSerialized)  // _STA: Status
-            {
-                If (LEqual (BID, 0x20))
-                {
-                    Return (0x0F)
-                }
-
-                Return (Zero)
-            }
-
-            Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-            {
-                Name (SBUF, ResourceTemplate ()
-                {
-                    I2cSerialBusV2 (0x006E, ControllerInitiated, 0x00061A80,
-                        AddressingMode7Bit, "\\_SB.PCI0.I2C1",
-                        0x00, ResourceConsumer, , Exclusive,
-                        )
-                })
-                Return (SBUF)
-            }
-        }
-    }
-
     Scope (_SB.PCI0.SPI1)
     {
         Device (FPNT)
@@ -14612,7 +14394,7 @@ Return (WAKP)
                     SpiSerialBusV2 (0x0000, PolarityLow, FourWireMode, 0x08,
                         ControllerInitiated, 0x00989680, ClockPolarityLow,
                         ClockPhaseFirst, "\\_SB.PCI0.SPI1",
-                        0x00, ResourceConsumer, _Y2A, Exclusive,
+                        0x00, ResourceConsumer, _Y28, Exclusive,
                         )
                     GpioIo (Exclusive, PullDefault, 0x0000, 0x0000, IoRestrictionOutputOnly,
                         "\\_SB.PCI0.GPI0", 0x00, ResourceConsumer, ,
@@ -14623,7 +14405,7 @@ Return (WAKP)
                 })
                 Name (IBUF, ResourceTemplate ()
                 {
-                    Interrupt (ResourceConsumer, Level, ActiveLow, ExclusiveAndWake, ,, _Y2B)
+                    Interrupt (ResourceConsumer, Level, ActiveLow, ExclusiveAndWake, ,, _Y29)
                     {
                         0x00000000,
                     }
@@ -14631,7 +14413,7 @@ Return (WAKP)
                 Name (GBUF, ResourceTemplate ()
                 {
                     GpioInt (Level, ActiveLow, ExclusiveAndWake, PullDefault, 0x0000,
-                        "\\_SB.PCI0.GPI0", 0x00, ResourceConsumer, _Y2C,
+                        "\\_SB.PCI0.GPI0", 0x00, ResourceConsumer, _Y2A,
                         )
                         {   // Pin list
                             0x0000
@@ -14646,16 +14428,16 @@ Return (WAKP)
                             0x0000
                         }
                 })
-                CreateDWordField (BBUF, \_SB.PCI0.SPI1.FPNT._CRS._Y2A._SPE, SPEX)  // _SPE: Speed
-                CreateByteField (BBUF, \_SB.PCI0.SPI1.FPNT._CRS._Y2A._PHA, PHAX)  // _PHA: Clock Phase
+                CreateDWordField (BBUF, \_SB.PCI0.SPI1.FPNT._CRS._Y28._SPE, SPEX)  // _SPE: Speed
+                CreateByteField (BBUF, \_SB.PCI0.SPI1.FPNT._CRS._Y28._PHA, PHAX)  // _PHA: Clock Phase
                 CreateWordField (BBUF, 0x3B, SPIN)
                 CreateWordField (GBUF, 0x17, GPIN)
-                CreateDWordField (IBUF, \_SB.PCI0.SPI1.FPNT._CRS._Y2B._INT, IPIN)  // _INT: Interrupts
-                CreateBitField (IBUF, \_SB.PCI0.SPI1.FPNT._CRS._Y2B._LL, ILVL)  // _LL_: Low Level
-                CreateBitField (IBUF, \_SB.PCI0.SPI1.FPNT._CRS._Y2B._HE, ITRG)  // _HE_: High-Edge
-                CreateField (GBUF, \_SB.PCI0.SPI1.FPNT._CRS._Y2C._POL, 0x02, GLVL)  // _POL: Polarity
-                CreateBitField (GBUF, \_SB.PCI0.SPI1.FPNT._CRS._Y2C._MOD, GTRG)  // _MOD: Mode
-                CreateBitField (BBUF, \_SB.PCI0.SPI1.FPNT._CRS._Y2A._DPL, SCSP)  // _DPL: Device Selection Polarity
+                CreateDWordField (IBUF, \_SB.PCI0.SPI1.FPNT._CRS._Y29._INT, IPIN)  // _INT: Interrupts
+                CreateBitField (IBUF, \_SB.PCI0.SPI1.FPNT._CRS._Y29._LL, ILVL)  // _LL_: Low Level
+                CreateBitField (IBUF, \_SB.PCI0.SPI1.FPNT._CRS._Y29._HE, ITRG)  // _HE_: High-Edge
+                CreateField (GBUF, \_SB.PCI0.SPI1.FPNT._CRS._Y2A._POL, 0x02, GLVL)  // _POL: Polarity
+                CreateBitField (GBUF, \_SB.PCI0.SPI1.FPNT._CRS._Y2A._MOD, GTRG)  // _MOD: Mode
+                CreateBitField (BBUF, \_SB.PCI0.SPI1.FPNT._CRS._Y28._DPL, SCSP)  // _DPL: Device Selection Polarity
                 CreateWordField (UBUF, 0x17, UPIN)
                 Store (GNUM (GFPS), SPIN)
                 Store (GNUM (GFPI), GPIN)
@@ -14819,12 +14601,12 @@ Return (WAKP)
                         {   // Pin list
                             0x0000
                         }
-                    Interrupt (ResourceConsumer, Edge, ActiveLow, Exclusive, ,, _Y2D)
+                    Interrupt (ResourceConsumer, Edge, ActiveLow, Exclusive, ,, _Y2B)
                     {
                         0x00000000,
                     }
                 })
-                CreateDWordField (SBFI, \_SB.PCI0.UA00.BTH0._CRS._Y2D._INT, INT4)  // _INT: Interrupts
+                CreateDWordField (SBFI, \_SB.PCI0.UA00.BTH0._CRS._Y2B._INT, INT4)  // _INT: Interrupts
                 CreateWordField (SBFI, 0x3C, WAK4)
                 CreateWordField (SBFI, 0x64, KIL4)
                 Store (INUM (GBTI), INT4)
@@ -15591,7 +15373,7 @@ Return (WAKP)
                     Store (PSTA, Local0)
                 }
 
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (PCIC (Arg0))
@@ -15697,7 +15479,7 @@ Return (WAKP)
                     Store (PSTA, Local0)
                 }
 
-                Method (XDSM, 4, Serialized)
+                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                     If (PCIC (Arg0))
@@ -15773,7 +15555,7 @@ Return (WAKP)
         Device (ISHD)
         {
             Name (_ADR, 0x00130000)  // _ADR: Address
-            Method (XDSM, 4, NotSerialized)
+            Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -15785,6 +15567,17 @@ Return (WAKP)
 
     Scope (_SB.PCI0)
     {
+        Device (HECI)
+        {
+            Name (_ADR, 0x00160000)  // _ADR: Address
+            Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+            {
+                If (PCIC (Arg0))
+                {
+                    Return (PCID (Arg0, Arg1, Arg2, Arg3))
+                }
+            }
+        }
     }
 
     Name (ECUP, One)
@@ -15804,7 +15597,7 @@ Return (WAKP)
                 Return (Zero)
             }
 
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
                 Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -16670,20 +16463,20 @@ Return (WAKP)
                     0x0000000000000000, // Range Maximum
                     0x0000000000000000, // Translation Offset
                     0x0000000000000001, // Length
-                    ,, _Y2E, AddressRangeMemory, TypeStatic)
+                    ,, _Y2C, AddressRangeMemory, TypeStatic)
             })
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {
-                CreateQWordField (RBUF, \_SB.EPC._Y2E._MIN, EMIN)  // _MIN: Minimum Base Address
-                CreateQWordField (RBUF, \_SB.EPC._Y2E._MAX, EMAX)  // _MAX: Maximum Base Address
-                CreateQWordField (RBUF, \_SB.EPC._Y2E._LEN, ELEN)  // _LEN: Length
+                CreateQWordField (RBUF, \_SB.EPC._Y2C._MIN, EMIN)  // _MIN: Minimum Base Address
+                CreateQWordField (RBUF, \_SB.EPC._Y2C._MAX, EMAX)  // _MAX: Maximum Base Address
+                CreateQWordField (RBUF, \_SB.EPC._Y2C._LEN, ELEN)  // _LEN: Length
                 Store (\_PR.EMNA, EMIN)
                 Store (\_PR.ELNG, ELEN)
                 Subtract (Add (\_PR.EMNA, \_PR.ELNG), One, EMAX)
                 Return (RBUF)
             }
 
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
                 Name (BUFX, Package (0x09)
@@ -17692,7 +17485,7 @@ Return (WAKP)
     {
         Scope (_SB.PCI0.RP01.PXSX)
         {
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
                 Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -18045,7 +17838,7 @@ Return (WAKP)
 
     Scope (_SB.PCI0.RP02.PXSX)
     {
-        Method (XDSM, 4, Serialized)
+        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
         {
             Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
             Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -18397,7 +18190,7 @@ Return (WAKP)
 
     Scope (_SB.PCI0.RP03.PXSX)
     {
-        Method (XDSM, 4, Serialized)
+        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
         {
             Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
             Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -18749,7 +18542,7 @@ Return (WAKP)
 
     Scope (_SB.PCI0.RP04.PXSX)
     {
-        Method (XDSM, 4, Serialized)
+        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
         {
             Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
             Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -19103,7 +18896,7 @@ Return (WAKP)
     {
         Scope (_SB.PCI0.RP05.PXSX)
         {
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
                 Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -19456,7 +19249,7 @@ Return (WAKP)
 
     Scope (_SB.PCI0.RP06.PXSX)
     {
-        Method (XDSM, 4, Serialized)
+        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
         {
             Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
             Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -19808,7 +19601,7 @@ Return (WAKP)
 
     Scope (_SB.PCI0.RP07.PXSX)
     {
-        Method (XDSM, 4, Serialized)
+        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
         {
             Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
             Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -20160,7 +19953,7 @@ Return (WAKP)
 
     Scope (_SB.PCI0.RP08.PXSX)
     {
-        Method (XDSM, 4, Serialized)
+        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
         {
             Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
             Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -20514,7 +20307,7 @@ Return (WAKP)
     {
         Scope (_SB.PCI0.RP09.PXSX)
         {
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
                 Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -20867,7 +20660,7 @@ Return (WAKP)
 
     Scope (_SB.PCI0.RP10.PXSX)
     {
-        Method (XDSM, 4, Serialized)
+        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
         {
             Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
             Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -21219,7 +21012,7 @@ Return (WAKP)
 
     Scope (_SB.PCI0.RP11.PXSX)
     {
-        Method (XDSM, 4, Serialized)
+        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
         {
             Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
             Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -21571,7 +21364,7 @@ Return (WAKP)
 
     Scope (_SB.PCI0.RP12.PXSX)
     {
-        Method (XDSM, 4, Serialized)
+        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
         {
             Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
             Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -21923,7 +21716,7 @@ Return (WAKP)
 
     Scope (_SB.PCI0.RP13.PXSX)
     {
-        Method (XDSM, 4, Serialized)
+        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
         {
             Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
             Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -22275,7 +22068,7 @@ Return (WAKP)
 
     Scope (_SB.PCI0.RP14.PXSX)
     {
-        Method (XDSM, 4, Serialized)
+        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
         {
             Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
             Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -22627,7 +22420,7 @@ Return (WAKP)
 
     Scope (_SB.PCI0.RP15.PXSX)
     {
-        Method (XDSM, 4, Serialized)
+        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
         {
             Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
             Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -22979,7 +22772,7 @@ Return (WAKP)
 
     Scope (_SB.PCI0.RP16.PXSX)
     {
-        Method (XDSM, 4, Serialized)
+        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
         {
             Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
             Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -23331,7 +23124,7 @@ Return (WAKP)
 
     Scope (_SB.PCI0.RP17.PXSX)
     {
-        Method (XDSM, 4, Serialized)
+        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
         {
             Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
             Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -23683,7 +23476,7 @@ Return (WAKP)
 
     Scope (_SB.PCI0.RP18.PXSX)
     {
-        Method (XDSM, 4, Serialized)
+        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
         {
             Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
             Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -24035,7 +23828,7 @@ Return (WAKP)
 
     Scope (_SB.PCI0.RP19.PXSX)
     {
-        Method (XDSM, 4, Serialized)
+        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
         {
             Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
             Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -24387,7 +24180,7 @@ Return (WAKP)
 
     Scope (_SB.PCI0.RP20.PXSX)
     {
-        Method (XDSM, 4, Serialized)
+        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
         {
             Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
             Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -27629,7 +27422,7 @@ Return (WAKP)
                 Return (Zero)
             }
 
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 ADBG (Concatenate ("PEPC = ", ToHexString (PEPC)))
                 If (LEqual (Arg0, ToUUID ("c4eb40a0-6cd2-11e2-bcfd-0800200c9a66")))
@@ -28064,7 +27857,7 @@ Return (WAKP)
                 Memory32Fixed (ReadWrite,
                     0xFED00000,         // Address Base
                     0x00000400,         // Address Length
-                    _Y2F)
+                    _Y2D)
             })
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
@@ -28080,7 +27873,7 @@ Return (WAKP)
             {
                 If (HPTE)
                 {
-                    CreateDWordField (BUF0, \_SB.PCI0.LPCB.HPET._Y2F._BAS, HPT0)  // _BAS: Base Address
+                    CreateDWordField (BUF0, \_SB.PCI0.LPCB.HPET._Y2D._BAS, HPT0)  // _BAS: Base Address
                     Store (HPTB, HPT0)
                 }
 
@@ -28365,7 +28158,7 @@ Return (WAKP)
                     0x0070,             // Range Minimum
                     0x0070,             // Range Maximum
                     0x01,               // Alignment
-                    0x02,               // Length
+                    0x08,               // Length
                     )
             })
         }
@@ -28445,36 +28238,36 @@ Return (WAKP)
             Memory32Fixed (ReadOnly,
                 0x00000000,         // Address Base
                 0x00001000,         // Address Length
-                _Y30)
+                _Y2E)
             Memory32Fixed (ReadOnly,
                 0xFED70000,         // Address Base
                 0x00001000,         // Address Length
-                _Y31)
+                _Y2F)
         })
         Name (CRSD, ResourceTemplate ()
         {
             Memory32Fixed (ReadOnly,
                 0xFED40000,         // Address Base
                 0x00001000,         // Address Length
-                _Y32)
+                _Y30)
         })
         Name (CRSI, ResourceTemplate ()
         {
             Memory32Fixed (ReadOnly,
                 0xFED40000,         // Address Base
                 0x00001000,         // Address Length
-                _Y33)
+                _Y31)
         })
         Method (_CRS, 0, Serialized)  // _CRS: Current Resource Settings
         {
             If (LEqual (AMDT, One))
             {
-                CreateDWordField (CRST, \_SB.TPM._Y30._BAS, MTFB)  // _BAS: Base Address
-                CreateDWordField (CRST, \_SB.TPM._Y30._LEN, LTFB)  // _LEN: Length
+                CreateDWordField (CRST, \_SB.TPM._Y2E._BAS, MTFB)  // _BAS: Base Address
+                CreateDWordField (CRST, \_SB.TPM._Y2E._LEN, LTFB)  // _LEN: Length
                 Store (TPMB, MTFB)
                 Store (0x1000, LTFB)
-                CreateDWordField (CRST, \_SB.TPM._Y31._BAS, MTFC)  // _BAS: Base Address
-                CreateDWordField (CRST, \_SB.TPM._Y31._LEN, LTFC)  // _LEN: Length
+                CreateDWordField (CRST, \_SB.TPM._Y2F._BAS, MTFC)  // _BAS: Base Address
+                CreateDWordField (CRST, \_SB.TPM._Y2F._LEN, LTFC)  // _LEN: Length
                 Store (TPMC, MTFC)
                 Store (0x1000, LTFC)
                 Return (CRST)
@@ -28483,23 +28276,23 @@ Return (WAKP)
             {
                 If (LEqual (DTPT, One))
                 {
-                    CreateDWordField (CRSD, \_SB.TPM._Y32._BAS, MTFE)  // _BAS: Base Address
-                    CreateDWordField (CRSD, \_SB.TPM._Y32._LEN, LTFE)  // _LEN: Length
+                    CreateDWordField (CRSD, \_SB.TPM._Y30._BAS, MTFE)  // _BAS: Base Address
+                    CreateDWordField (CRSD, \_SB.TPM._Y30._LEN, LTFE)  // _LEN: Length
                     Store (0xFED40000, MTFE)
                     Store (0x0880, LTFE)
                     Return (CRSD)
                 }
                 ElseIf (LEqual (TTPF, One))
                 {
-                    CreateDWordField (CRSI, \_SB.TPM._Y33._BAS, MTFD)  // _BAS: Base Address
-                    CreateDWordField (CRSI, \_SB.TPM._Y33._LEN, LTFD)  // _LEN: Length
+                    CreateDWordField (CRSI, \_SB.TPM._Y31._BAS, MTFD)  // _BAS: Base Address
+                    CreateDWordField (CRSI, \_SB.TPM._Y31._LEN, LTFD)  // _LEN: Length
                     Store (0xFED40000, MTFD)
                     Store (0x5000, LTFD)
                     Return (CRSI)
                 }
                 ElseIf (LEqual (TTPF, Zero))
                 {
-                    CreateDWordField (CRSI, \_SB.TPM._Y33._BAS, MTFF)  // _BAS: Base Address
+                    CreateDWordField (CRSI, \_SB.TPM._Y31._BAS, MTFF)  // _BAS: Base Address
                     Store (TPMM, MTFF)
                     Return (CRSI)
                 }
@@ -28671,7 +28464,7 @@ Return (WAKP)
             SMI,    16
         }
 
-        Method (XDSM, 4, Serialized)
+        Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
         {
             Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
             Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler
@@ -37775,7 +37568,6 @@ Return (WAKP)
                 Store (Zero, ASBN)
                 If (ATKP)
                 {
-                    /* Brightness key patch
                     If (LGreaterEqual (MSOS (), OSW8)) {}
                     Else
                     {
@@ -37788,12 +37580,10 @@ Return (WAKP)
                         {
                             Store (0x0A, Local0)
                         }
-                        
+
                         Store (Local0, LBTN)
-                        }
-                        */
                         ^^^^ATKD.IANE (Add (Local0, 0x20))
-                    
+                    }
                 }
             }
             Else
@@ -37856,7 +37646,6 @@ Return (WAKP)
                 Store (Zero, ASBN)
                 If (ATKP)
                 {
-                     /* Brightness key patch
                     If (LGreaterEqual (MSOS (), OSW8)) {}
                     Else
                     {
@@ -37870,10 +37659,8 @@ Return (WAKP)
                         }
 
                         Store (Local0, LBTN)
-                        }
-                        */
                         ^^^^ATKD.IANE (Add (Local0, 0x10))
-                    
+                    }
                 }
             }
             Else
@@ -38523,25 +38310,6 @@ Return (WAKP)
     {
         Device (ETPD)
         {
-            CreateWordField (SBFB, \_SB.PCI0.I2C1.ETPD._Y34._ADR, BADR)  // _ADR: Address
-            Name (_ADR, One)  // _ADR: Address
-            Method (_HID, 0, NotSerialized)  // _HID: Hardware ID
-            {
-                If (ELAN)
-                {
-                    Store (0x15, BADR)
-                    Return ("ELAN1000")
-                }
-
-                If (FOLT)
-                {
-                    Store (0x15, BADR)
-                    Return ("FTE1001")
-                }
-
-                Return ("ELAN1000")
-            }
-            /*  Own patch For VoodooI2C
             Name (_ADR, One)  // _ADR: Address
             Name (EPID, Package (0x04)
             {
@@ -38571,20 +38339,13 @@ Return (WAKP)
 
                 Return ("ELAN1010")
             }
-            */
+
             Name (_CID, "PNP0C50")  // _CID: Compatible ID
             Name (_UID, One)  // _UID: Unique ID
             Name (_S0W, 0x03)  // _S0W: S0 Device Wake State
-            Name (SBFS, Buffer (0x02)
+            Name (SBFS, ResourceTemplate ()
             {
-                 0x79, 0x00                                     
-            })
-            Name (SBFB, ResourceTemplate ()
-            {
-                I2cSerialBusV2 (0x0015, ControllerInitiated, 0x00061A80,
-                    AddressingMode7Bit, "\\_SB.PCI0.I2C1",
-                    0x00, ResourceConsumer, _Y34, Exclusive,
-                    )
+                
             })
             Name (SBFG, ResourceTemplate ()
             {
@@ -38595,21 +38356,7 @@ Return (WAKP)
                         0x0055
                     }
             })
-            Name (SBFI, ResourceTemplate ()
-            {
-                Interrupt (ResourceConsumer, Level, ActiveLow, Exclusive, ,, )
-                {
-                    0x0000006D,
-                }
-            })
-            
-            Method (_INI, 0, NotSerialized)  // _INI: Initialize
-            {
-                If (Not (LOr (_OSI ("Darwin"), _OSI ("Windows 2015"))))
-                {
-                    SRXO (0x0203000D, One)
-                }
-            }
+           
 
             Method (_S3W, 0, NotSerialized)  // _S3W: S3 Device Wake State
             {
@@ -38623,7 +38370,7 @@ Return (WAKP)
                 }
             }
 
-            Method (XDSM, 4, NotSerialized)
+            Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("3cdff6f7-4267-4555-ad05-b30a3d8938de") /* HID I2C Device */))
                 {
@@ -38650,7 +38397,6 @@ Return (WAKP)
                         Return (One)
                     }
                 }
-                /* Own patch For VoodooI2C
                 ElseIf (LEqual (MSOS (), OSW7))
                 {
                     If (LEqual (Arg0, ToUUID ("ef87eb82-f951-46da-84ec-14871ac6f84b")))
@@ -38668,7 +38414,7 @@ Return (WAKP)
 
                         If (LEqual (Arg2, One))
                         {
-                            Return (ConcatenateResTemplate (SBFB, SBFG))
+                            Return (ConcatenateResTemplate (SBFS, SBFG))
                         }
 
                         Return (Buffer (One)
@@ -38677,7 +38423,6 @@ Return (WAKP)
                         })
                     }
                 }
-                */
                 Else
                 {
                     Return (Buffer (One)
@@ -38704,6 +38449,13 @@ Return (WAKP)
 
             Method (_CRS, 0, Serialized)  // _CRS: Current Resource Settings
             {
+                Name (SBFB, ResourceTemplate ()
+            {
+                I2cSerialBusV2 (0x0015, ControllerInitiated, 0x00061A80,
+                    AddressingMode7Bit, "\\_SB.PCI0.I2C1",
+                    0x00, ResourceConsumer, , Exclusive,
+                    )
+            })
                 Return (ConcatenateResTemplate (SBFB, SBFG))
             }
         }
@@ -39381,7 +39133,7 @@ Return (WAKP)
     {
         Scope (_SB.PCI0.SAT0.PRT1)
         {
-            Method (XDSM, 4, Serialized)
+            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 Name (_T_1, Zero)  // _T_x: Emitted by ASL Compiler
                 Name (_T_0, Zero)  // _T_x: Emitted by ASL Compiler

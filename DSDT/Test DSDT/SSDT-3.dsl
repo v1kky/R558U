@@ -5,74 +5,53 @@
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of SSDT-3.aml, Sun Sep 24 10:51:09 2017
+ * Disassembly of SSDT-3.aml, Mon Jan 22 16:30:48 2018
  *
  * Original Table Header:
  *     Signature        "SSDT"
- *     Length           0x00005882 (22658)
+ *     Length           0x000059F9 (23033)
  *     Revision         0x02
- *     Checksum         0x3D
+ *     Checksum         0x41
  *     OEM ID           "SaSsdt"
  *     OEM Table ID     "SaSsdt "
  *     OEM Revision     0x00003000 (12288)
  *     Compiler ID      "INTL"
- *     Compiler Version 0x20120913 (538052883)
+ *     Compiler Version 0x20161210 (538317328)
  */
 DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
 {
-    /*
-     * iASL Warning: There were 13 external control methods found during
-     * disassembly, but only 11 were resolved (2 unresolved). Additional
-     * ACPI tables may be required to properly disassemble the code. This
-     * resulting disassembler output file may not compile because the
-     * disassembler did not know how many arguments to assign to the
-     * unresolved methods. Note: SSDTs can be dynamically loaded at
-     * runtime and may or may not be available via the host OS.
-     *
-     * In addition, the -fe option can be used to specify a file containing
-     * control method external declarations with the associated method
-     * argument counts. Each line of the file must be of the form:
-     *     External (<method pathname>, MethodObj, <argument count>)
-     * Invocation:
-     *     iasl -fe refs.txt -d dsdt.aml
-     *
-     * The following methods were unresolved and many not compile properly
-     * because the disassembler had to guess at the number of arguments
-     * required for each:
-     */
-    External (_SB_.BRTI, FieldUnitObj)
-    External (_SB_.CSTE, FieldUnitObj)
-    External (_SB_.GGIV, MethodObj)    // 1 Arguments
-    External (_SB_.GGOV, MethodObj)    // 1 Arguments
-    External (_SB_.LBTN, FieldUnitObj)
-    External (_SB_.NSTE, FieldUnitObj)
-    External (_SB_.OCAD, FieldUnitObj)
-    External (_SB_.OPAD, FieldUnitObj)
-    External (_SB_.PCI0, DeviceObj)
-    External (_SB_.PCI0.IGPU, DeviceObj)
-    External (_SB_.PCI0.IGPU.SNXD, MethodObj)    // 1 Arguments
-    External (_SB_.PCI0.LPCB.EC0_.PWAC, BuffObj)
-    External (_SB_.PCI0.LPCB.EC0_.STBR, MethodObj)    // 0 Arguments
-    External (_SB_.SFUN, FieldUnitObj)
-    External (_SB_.SGOV, MethodObj)    // 2 Arguments
-    External (_SB_.SSTE, FieldUnitObj)
-    External (_SB_.VBIF, FieldUnitObj)
-    External (_SB_.VGAF, FieldUnitObj)
-    External (CPSC, FieldUnitObj)
-    External (DSEN, FieldUnitObj)
-    External (GUAM, MethodObj)    // 1 Arguments
-    External (HDOS, MethodObj)    // Warning: Unknown method, guessing 0 arguments
-    External (HNOT, MethodObj)    // Warning: Unknown method, guessing 1 arguments
-    External (ISMI, MethodObj)    // 1 Arguments
-    External (MSOS, MethodObj)    // 0 Arguments
-    External (NATK, MethodObj)    // 0 Arguments
-    External (OSFG, IntObj)
-    External (OSW8, IntObj)
-    External (OSXP, IntObj)
-    External (OSYS, FieldUnitObj)
-    External (PCRA, MethodObj)    // 3 Arguments
-    External (PCRO, MethodObj)    // 3 Arguments
-    External (S0ID, FieldUnitObj)
+    External (_SB_.BRTI, FieldUnitObj)    // (from opcode)
+    External (_SB_.CSTE, FieldUnitObj)    // (from opcode)
+    External (_SB_.GGIV, MethodObj)    // 1 Arguments (from opcode)
+    External (_SB_.GGOV, MethodObj)    // 1 Arguments (from opcode)
+    External (_SB_.LBTN, FieldUnitObj)    // (from opcode)
+    External (_SB_.NSTE, FieldUnitObj)    // (from opcode)
+    External (_SB_.OCAD, FieldUnitObj)    // (from opcode)
+    External (_SB_.OPAD, FieldUnitObj)    // (from opcode)
+    External (_SB_.PCI0, DeviceObj)    // (from opcode)
+    External (_SB_.PCI0.IGPU, DeviceObj)    // (from opcode)
+    External (_SB_.PCI0.LPCB.EC0_.PWAC, BuffObj)    // (from opcode)
+    External (_SB_.PCI0.LPCB.EC0_.STBR, MethodObj)    // 0 Arguments (from opcode)
+    External (_SB_.SFUN, FieldUnitObj)    // (from opcode)
+    External (_SB_.SGOV, MethodObj)    // 2 Arguments (from opcode)
+    External (_SB_.SSTE, FieldUnitObj)    // (from opcode)
+    External (_SB_.VBIF, FieldUnitObj)    // (from opcode)
+    External (_SB_.VGAF, FieldUnitObj)    // (from opcode)
+    External (CPSC, FieldUnitObj)    // (from opcode)
+    External (DSEN, FieldUnitObj)    // (from opcode)
+    External (GUAM, MethodObj)    // 1 Arguments (from opcode)
+    External (HDOS, MethodObj)    // 0 Arguments (from opcode)
+    External (HNOT, MethodObj)    // 1 Arguments (from opcode)
+    External (ISMI, MethodObj)    // 1 Arguments (from opcode)
+    External (MSOS, MethodObj)    // 0 Arguments (from opcode)
+    External (NATK, MethodObj)    // 0 Arguments (from opcode)
+    External (OSFG, IntObj)    // (from opcode)
+    External (OSW8, IntObj)    // (from opcode)
+    External (OSXP, IntObj)    // (from opcode)
+    External (OSYS, FieldUnitObj)    // (from opcode)
+    External (PCRA, MethodObj)    // 3 Arguments (from opcode)
+    External (PCRO, MethodObj)    // 3 Arguments (from opcode)
+    External (S0ID, FieldUnitObj)    // (from opcode)
 
     OperationRegion (SANV, SystemMemory, 0x77112D98, 0x0135)
     Field (SANV, AnyAcc, Lock, Preserve)
@@ -1652,7 +1631,7 @@ DefinitionBlock ("", "SSDT", 2, "SaSsdt", "SaSsdt ", 0x00003000)
             {
                 If (LGreaterEqual (\MSOS (), \OSW8))
                 {
-                    Add (0x64, One, Local0)
+                    Store (0x65, Local0)
                     Add (Local0, 0x02, Local0)
                     Name (BRPP, Package (0x67) {})
                     Store (0x64, Index (BRPP, Zero))

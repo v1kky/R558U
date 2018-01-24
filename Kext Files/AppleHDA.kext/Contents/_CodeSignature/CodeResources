@@ -729,7 +729,7 @@
 		</dict>
 		<key>version.plist</key>
 		<data>
-		nm/md3wU4St/KwTGpdjONlQl9Dc=
+		3BZ/huQnhwZs7hl1iyFIZRkpvww=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -738,7 +738,7 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			oplkodIHtuhHUwI33Gs04DFaxCA=
+			7UFUL1o5RP4ajItAhTmpyR4b5Xw=
 			</data>
 			<key>requirement</key>
 			<string>identifier "com.apple.driver.AppleHDAController" and anchor apple</string>
@@ -756,7 +756,7 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			G62NtovFycfUno6VyxtodCWvqWY=
+			Nhb3bP7V3NRcKZIhLKfPDNaENG8=
 			</data>
 			<key>requirement</key>
 			<string>identifier "com.apple.driver.AppleHDAHardwareConfigDriver" and anchor apple</string>
@@ -765,7 +765,7 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			RjmXedhx03sYvQR2B0hyexXZ7dw=
+			YJTO9VNYB0i0AmNntVdmUrRkjUI=
 			</data>
 			<key>requirement</key>
 			<string>identifier "com.apple.driver.AppleMikeyDriver" and anchor apple</string>
@@ -774,7 +774,7 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			N3kK/pMAfobvQ7Eo3Poa0nDoSDs=
+			73y65seOJGJ6WZTC1Pg1w4qhSIw=
 			</data>
 			<key>requirement</key>
 			<string>identifier "com.apple.driver.DspFuncLib" and anchor apple</string>
@@ -783,7 +783,7 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			E28xZGlSiMHZ2iQjBC8bBWIkLtM=
+			TfEqBKpx+9HwtOoziqcSUJ2gF8I=
 			</data>
 			<key>requirement</key>
 			<string>identifier "com.apple.iokit.IOHDAFamily" and anchor apple</string>
@@ -1821,7 +1821,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			RIK+EIxHjfzZAm9tyb0SRkR1XoVQUobl5mvH91JVmv0=
+			hYWM2FCkpBGghj6BuBscoI3CXdq3Zn+ovOk/VTWhs6E=
 			</data>
 		</dict>
 	</dict>

@@ -5,7 +5,7 @@
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of SSDT-13.aml, Mon Jan 22 16:30:48 2018
+ * Disassembly of SSDT-13.aml, Sat Jan 20 10:26:06 2018
  *
  * Original Table Header:
  *     Signature        "SSDT"
@@ -27,9 +27,9 @@ DefinitionBlock ("", "SSDT", 1, "OptRef", "OptTabl", 0x00001000)
     External (_PR_.CPU0._TSS, IntObj)    // Warning: Unknown object
     External (_SB_.GGIV, MethodObj)    // 1 Arguments
     External (_SB_.PCI0, DeviceObj)
-    External (_SB_.PCI0.GFX0, DeviceObj)    // Warning: Unknown object
-    External (_SB_.PCI0.GFX0._DSM, IntObj)    // Warning: Unknown object
-    External (_SB_.PCI0.GFX0.LCDD, UnknownObj)    // Warning: Unknown object
+    External (_SB_.PCI0.GFX0, DeviceObj)
+    External (_SB_.PCI0.GFX0._DSM, MethodObj)    // 4 Arguments
+    External (_SB_.PCI0.GFX0.LCDD, UnknownObj)
     External (_SB_.PCI0.LPCB.EC0_.ECPU, FieldUnitObj)
     External (_SB_.PCI0.LPCB.EC0_.RRAM, MethodObj)    // 1 Arguments
     External (_SB_.PCI0.LPCB.EC0_.ST8E, MethodObj)    // 2 Arguments
@@ -1298,11 +1298,7 @@ DefinitionBlock ("", "SSDT", 1, "OptRef", "OptTabl", 0x00001000)
                         CreateField (Arg2, 0xE0, 0x20, XRG0)
                         If (CondRefOf (\_SB.PCI0.GFX0._DSM))
                         {
-                            Return (\_SB.PCI0.GFX0._DSM)
-                            MUID
-                            REVI
-                            SFNC
-                            XRG0
+                            Return (\_SB.PCI0.GFX0._DSM (MUID, REVI, SFNC, XRG0))
                         }
                     }
                 }

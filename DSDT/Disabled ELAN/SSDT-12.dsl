@@ -5,48 +5,47 @@
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of SSDT-12.aml, Mon Jan 22 16:30:47 2018
+ * Disassembly of SSDT-12.aml, Sat Jan 20 10:26:06 2018
  *
  * Original Table Header:
  *     Signature        "SSDT"
- *     Length           0x0000093E (2366)
+ *     Length           0x000007CB (1995)
  *     Revision         0x02
- *     Checksum         0x78
+ *     Checksum         0x17
  *     OEM ID           "SgRef"
  *     OEM Table ID     "SgPch"
  *     OEM Revision     0x00001000 (4096)
  *     Compiler ID      "INTL"
- *     Compiler Version 0x20161210 (538317328)
+ *     Compiler Version 0x20120913 (538052883)
  */
 DefinitionBlock ("", "SSDT", 2, "SgRef", "SgPch", 0x00001000)
 {
-    External (_SB_.GGIV, MethodObj)    // 1 Arguments (from opcode)
-    External (_SB_.GGOV, MethodObj)    // 1 Arguments (from opcode)
-    External (_SB_.PCI0.LPCB.EC0_.RRAM, MethodObj)    // 1 Arguments (from opcode)
-    External (_SB_.PCI0.LPCB.EC0_.WRAM, MethodObj)    // 2 Arguments (from opcode)
-    External (_SB_.PCI0.RP01, DeviceObj)    // (from opcode)
-    External (_SB_.PCI0.RP01._ADR, IntObj)    // (from opcode)
-    External (_SB_.PCI0.RP01.PEGP._OFF, MethodObj)    // 0 Arguments (from opcode)
-    External (_SB_.PCI0.RP01.PEGP.GC6I, MethodObj)    // 0 Arguments (from opcode)
-    External (_SB_.PCI0.RP01.PEGP.GC6O, MethodObj)    // 0 Arguments (from opcode)
-    External (_SB_.PCI0.RP01.PEGP.NHDA, FieldUnitObj)    // (from opcode)
-    External (_SB_.SGOV, MethodObj)    // 2 Arguments (from opcode)
-    External (DLHR, FieldUnitObj)    // (from opcode)
-    External (EBAS, FieldUnitObj)    // (from opcode)
-    External (EECP, FieldUnitObj)    // (from opcode)
-    External (GPRW, MethodObj)    // 2 Arguments (from opcode)
-    External (HRA0, FieldUnitObj)    // (from opcode)
-    External (HRE0, FieldUnitObj)    // (from opcode)
-    External (HRG0, FieldUnitObj)    // (from opcode)
-    External (HYSS, FieldUnitObj)    // (from opcode)
-    External (OSYS, FieldUnitObj)    // (from opcode)
-    External (PWA0, FieldUnitObj)    // (from opcode)
-    External (PWE0, FieldUnitObj)    // (from opcode)
-    External (PWG0, FieldUnitObj)    // (from opcode)
-    External (RPA1, FieldUnitObj)    // (from opcode)
-    External (SGGP, FieldUnitObj)    // (from opcode)
-    External (SGMD, FieldUnitObj)    // (from opcode)
-    External (XBAS, FieldUnitObj)    // (from opcode)
+    External (_SB_.GGIV, MethodObj)    // 1 Arguments
+    External (_SB_.GGOV, MethodObj)    // 1 Arguments
+    External (_SB_.PCI0.LPCB.EC0_.RRAM, MethodObj)    // 1 Arguments
+    External (_SB_.PCI0.LPCB.EC0_.WRAM, MethodObj)    // 2 Arguments
+    External (_SB_.PCI0.RP01, DeviceObj)
+    External (_SB_.PCI0.RP01._ADR, IntObj)
+    External (_SB_.PCI0.RP01.PEGP.GC6I, MethodObj)    // 0 Arguments
+    External (_SB_.PCI0.RP01.PEGP.GC6O, MethodObj)    // 0 Arguments
+    External (_SB_.PCI0.RP01.PEGP.NHDA, FieldUnitObj)
+    External (_SB_.SGOV, MethodObj)    // 2 Arguments
+    External (DLHR, FieldUnitObj)
+    External (EBAS, FieldUnitObj)
+    External (EECP, FieldUnitObj)
+    External (GPRW, MethodObj)    // 2 Arguments
+    External (HRA0, FieldUnitObj)
+    External (HRE0, FieldUnitObj)
+    External (HRG0, FieldUnitObj)
+    External (HYSS, FieldUnitObj)
+    External (OSYS, FieldUnitObj)
+    External (PWA0, FieldUnitObj)
+    External (PWE0, FieldUnitObj)
+    External (PWG0, FieldUnitObj)
+    External (RPA1, FieldUnitObj)
+    External (SGGP, FieldUnitObj)
+    External (SGMD, FieldUnitObj)
+    External (XBAS, FieldUnitObj)
 
     Scope (\_SB.PCI0.RP01)
     {
@@ -228,7 +227,9 @@ DefinitionBlock ("", "SSDT", 2, "SgRef", "SgPch", 0x00001000)
         Method (_INI, 0, NotSerialized)  // _INI: Initialize
         {
             Store (Zero, \_SB.PCI0.RP01.PEGP._ADR)
-            _OFF ()
+            //added to turn nvidia/radeon off
+            External(\_SB.PCI0.RP01.PEGP._OFF, MethodObj)
+            _OFF()
         }
 
         Method (HGON, 0, Serialized)
